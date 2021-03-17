@@ -1,16 +1,19 @@
 import express, { Request, Response } from 'express'
+import { ApolloServer } from 'apollo-server-express'
 import compression from 'compression'
 import mongoose from 'mongoose'
 import helmet from 'helmet'
 import cors from 'cors'
 
 import config from '../util/config'
-
-const app = express()
+import { typeDefs, resolvers } from './gql'
 
 const MONGODB_URI = config.MONGODB_URI
 const PORT = config.PORT
+const server = new ApolloServer({ typeDefs, resolvers })
+const app = express()
 
+server.applyMiddleware({ app })
 app.set('port', PORT || 5000)
 app.use(express.json())
 app.use(compression())
@@ -38,7 +41,7 @@ app.get('/api/bow', (_req, res) => {
 app.set('port', process.env.PORT || 5000)
 
 const unknownEndpoint = (_request: Request, response: Response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
+  response.status(404).send({ error: 'Unknown endpoint' })
 }
 
 app.use(unknownEndpoint)
