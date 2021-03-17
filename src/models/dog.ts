@@ -1,5 +1,9 @@
 import mongoose from 'mongoose'
 
+export type DogDocument = Document & {
+  name: string
+}
+
 const schema = new mongoose.Schema({
   name: {
     type: String,
