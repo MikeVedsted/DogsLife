@@ -5,23 +5,22 @@ import mongoose from 'mongoose'
 import helmet from 'helmet'
 import cors from 'cors'
 
-import config from '../util/config'
 import { typeDefs, resolvers } from './gql'
+import config from '../util/config'
 
-const MONGODB_URI = config.MONGODB_URI
-const PORT = config.PORT
-const server = new ApolloServer({ typeDefs, resolvers })
 const app = express()
+const server = new ApolloServer({ typeDefs, resolvers })
 
 server.applyMiddleware({ app })
-app.set('port', PORT || 5000)
+
+app.set('port', config.PORT || 5000)
 app.use(express.json())
 app.use(compression())
 app.use(helmet())
 app.use(cors())
 
 mongoose
-  .connect(MONGODB_URI, {
+  .connect(config.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -37,8 +36,6 @@ mongoose
 app.get('/api/bow', (_req, res) => {
   res.send('wow')
 })
-
-app.set('port', process.env.PORT || 5000)
 
 const unknownEndpoint = (_request: Request, response: Response) => {
   response.status(404).send({ error: 'Unknown endpoint' })
