@@ -1,12 +1,12 @@
 import express, { Request, Response } from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import compression from 'compression'
-import mongoose from 'mongoose'
 import helmet from 'helmet'
 import cors from 'cors'
 
 import typeDefs from './gql/types'
 import resolvers from './gql/resolvers'
+import { connectDB } from '../util/db'
 import config from '../util/config'
 
 const app = express()
@@ -20,19 +20,7 @@ app.use(compression())
 app.use(helmet())
 app.use(cors())
 
-mongoose
-  .connect(config.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
-  })
-  .then(() => {
-    console.log('connected to MongoDB')
-  })
-  .catch((error: Error) => {
-    console.log('error connection to MongoDB:', error.message)
-  })
+connectDB().catch((e) => console.log(e))
 
 app.get('/api/bow', (_req, res) => {
   res.send('wow')
