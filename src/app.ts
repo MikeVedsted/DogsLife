@@ -1,5 +1,6 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
+require('express-async-errors')
 import compression from 'compression'
 import helmet from 'helmet'
 import cors from 'cors'
@@ -8,6 +9,7 @@ import typeDefs from './gql/types'
 import resolvers from './gql/resolvers'
 import { connectDB } from '../util/db'
 import config from '../util/config'
+import middleware from './middlewares'
 
 const app = express()
 const server = new ApolloServer({ typeDefs, resolvers })
@@ -26,10 +28,6 @@ app.get('/api/bow', (_req, res) => {
   res.send('wow')
 })
 
-const unknownEndpoint = (_request: Request, response: Response) => {
-  response.status(404).send({ error: 'Unknown endpoint' })
-}
-
-app.use(unknownEndpoint)
+app.use(middleware.unknownEndpoint)
 
 export default app
