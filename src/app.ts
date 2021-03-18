@@ -6,12 +6,12 @@ import jwt from 'jsonwebtoken'
 import helmet from 'helmet'
 import cors from 'cors'
 
+import User from './models/user'
 import typeDefs from './gql/types'
 import resolvers from './gql/resolvers'
 import middleware from './middlewares'
 import { connectDB } from '../util/db'
 import config from '../util/config'
-import User from './models/user'
 
 const app = express()
 const server = new ApolloServer({
@@ -19,7 +19,6 @@ const server = new ApolloServer({
   resolvers,
   context: async ({ req }) => {
     const auth = req ? req.headers.authorization : null
-    console.log('from context', auth)
     if (auth && auth.toLowerCase().startsWith('bearer ')) {
       const decodedToken = jwt.verify(auth.substring(7), config.JWT_SECRET)
       const currentUser = await User.findById(decodedToken)
