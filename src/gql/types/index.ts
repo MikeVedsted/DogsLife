@@ -1,7 +1,17 @@
 import { gql } from 'apollo-server-express'
 
-export const typeDefs = gql`
+const typeDefs = gql`
+  type Dog {
+    name: String!
+  }
+
   type Query {
-    hello: String
+    allDogs: [Dog]
+  }
+
+  type Mutation {
+    addDog(name: String!): Dog
   }
 `
+
+export default typeDefs

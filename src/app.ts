@@ -5,7 +5,8 @@ import mongoose from 'mongoose'
 import helmet from 'helmet'
 import cors from 'cors'
 
-import { typeDefs, resolvers } from './gql'
+import typeDefs from './gql/types'
+import resolvers from './gql/resolvers'
 import config from '../util/config'
 
 const app = express()

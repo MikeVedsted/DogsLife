@@ -1,14 +1,14 @@
-import mongoose from 'mongoose'
+import { Document, Schema, model } from 'mongoose'
 
 export type DogDocument = Document & {
   name: string
 }
 
-const schema = new mongoose.Schema({
+const schema = new Schema({
   name: {
     type: String,
     required: true
   }
 })
 
-export default mongoose.model('Dog', schema)
+export default model<DogDocument>('Dog', schema)
