@@ -21,6 +21,7 @@ const typeDefs = gql`
     allDogs: [Dog]
     dog(id: ID!): Dog
     allUsers: [User]
+    me: User
   }
 
   type Mutation {

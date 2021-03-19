@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 import helmet from 'helmet'
 import cors from 'cors'
 
-import User from './models/user'
+import User, { UserDocument } from './models/user'
 import typeDefs from './gql/types'
 import resolvers from './gql/resolvers'
 import middleware from './middlewares'
@@ -20,8 +20,12 @@ const server = new ApolloServer({
   context: async ({ req }) => {
     const auth = req ? req.headers.authorization : null
     if (auth && auth.toLowerCase().startsWith('bearer ')) {
-      const decodedToken = jwt.verify(auth.substring(7), config.JWT_SECRET)
-      const currentUser = await User.findById(decodedToken)
+      const token = auth.substring(7)
+      const decodedToken = jwt.verify(
+        token,
+        config.JWT_SECRET
+      ) as Partial<UserDocument>
+      const currentUser = await User.findById(decodedToken.id)
       return { currentUser }
     }
     return null

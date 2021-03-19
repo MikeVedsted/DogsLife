@@ -20,9 +20,13 @@ const resolvers = {
     },
     allUsers: () => {
       return User.find({})
+    },
+    me: (_: any, __: any, context: {currentUser: UserDocument | null}) => {
+      console.log(context)
+      return context.currentUser
     }
   },
-  
+
   Mutation: {
     addDog: async (
       _root: unknown,
@@ -47,7 +51,7 @@ const resolvers = {
     },
     login: async (
       _root: unknown,
-      args: { email: string; password: string }
+      args: { email: string; password: string; id: string }
     ): Promise<Token> => {
       const { email, password } = args
 
@@ -55,7 +59,11 @@ const resolvers = {
         throw new UserInputError('Please provide both password and email.')
       }
 
-      const user = await User.findOne({ email: args.email })
+      const user: UserDocument | null = await User.findOne({
+      
+         email: args.email
+     
+      })
 
       const passwordCheck =
         user === null
@@ -68,7 +76,8 @@ const resolvers = {
 
       const tokenValues = {
         name: user.name,
-        email: user.email
+        email: user.email,
+        id: user._id
       }
 
       return { value: jwt.sign(tokenValues, config.JWT_SECRET) }
