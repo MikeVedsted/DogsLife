@@ -34,7 +34,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app })
 
-app.set('port', config.PORT || 5000)
+app.set('port', config.PORT || 8080)
 app.use(express.json())
 app.use(compression())
 app.use(helmet())
