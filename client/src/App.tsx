@@ -1,12 +1,23 @@
-import React from 'react'
-import logo from './logo.svg'
+import React, { useEffect } from 'react'
+import { useQuery } from '@apollo/client'
+
+import { ALL_DOGS } from './queries'
 import './App.css'
 
 function App() {
+  const { loading, data } = useQuery(ALL_DOGS)
+
+  useEffect(() => {
+    console.log('current: ', loading, data)
+  }, [loading, data])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -18,6 +29,9 @@ function App() {
         >
           Learn React
         </a>
+        {data && data.allDogs.map((dog: {name: string, id: string}) => (
+          <p>{dog.name}</p>
+        ))}
       </header>
     </div>
   )

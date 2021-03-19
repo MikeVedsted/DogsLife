@@ -26,7 +26,7 @@ const authLink = setContext((_, { headers }) => {
 })
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:8080'
+  uri: 'http://localhost:8080/graphql'
 })
 
 // const wsLink = new WebSocketLink({
@@ -48,6 +48,14 @@ const splitLink = split(
   authLink.concat(httpLink)
 )
 
+
+const client = new ApolloClient({
+  uri: 'http://localhost:8080/graphql',
+  cache: new InMemoryCache()
+  // link: splitLink
+})
+
+
 const WithApollo = () => {
   return (
     <ApolloProvider client={client}>
@@ -55,11 +63,6 @@ const WithApollo = () => {
     </ApolloProvider>
   )
 }
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: splitLink
-})
 
 ReactDOM.render(
   <React.StrictMode>
