@@ -1,10 +1,13 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { UserInputError } from 'apollo-server-errors'
+import { PubSub } from 'apollo-server-express'
 
 import config from '../../../util/config'
 import Dog, { DogDocument } from '../../models/Dog'
 import User, { UserDocument } from '../../models/user'
+
+const pubsub = new PubSub()
 
 type Token = {
   value: string
@@ -82,7 +85,11 @@ const resolvers = {
     }
   },
 
-  Subscription: {}
+  Subscription: {
+    hello: {
+      subscribe: () => pubsub.asyncIterator(['hello'])
+    }
+  }
 }
 
 export default resolvers
