@@ -25,7 +25,6 @@ const resolvers = {
       return User.find({})
     },
     me: (_: any, __: any, context: { currentUser: UserDocument | null }) => {
-      console.log(context)
       return context.currentUser
     }
   },

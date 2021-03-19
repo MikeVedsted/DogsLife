@@ -31,7 +31,7 @@ const typeDefs = gql`
   }
 
   type Subscription {
-    
+    hello: String
   }
 `
 
