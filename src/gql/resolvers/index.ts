@@ -15,10 +15,14 @@ const resolvers = {
     allDogs: () => {
       return Dog.find({})
     },
+    dog: async (_: any, args: { id: string }) => {
+      return await Dog.findById(args.id)
+    },
     allUsers: () => {
       return User.find({})
     }
   },
+  
   Mutation: {
     addDog: async (
       _root: unknown,
