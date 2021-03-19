@@ -21,7 +21,7 @@ const resolvers = {
     allUsers: () => {
       return User.find({})
     },
-    me: (_: any, __: any, context: {currentUser: UserDocument | null}) => {
+    me: (_: any, __: any, context: { currentUser: UserDocument | null }) => {
       console.log(context)
       return context.currentUser
     }
@@ -60,9 +60,7 @@ const resolvers = {
       }
 
       const user: UserDocument | null = await User.findOne({
-      
-         email: args.email
-     
+        email: args.email
       })
 
       const passwordCheck =
@@ -82,7 +80,9 @@ const resolvers = {
 
       return { value: jwt.sign(tokenValues, config.JWT_SECRET) }
     }
-  }
+  },
+
+  Subscription: {}
 }
 
 export default resolvers
