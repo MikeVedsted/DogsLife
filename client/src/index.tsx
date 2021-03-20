@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import {
   ApolloClient,
   ApolloProvider,
@@ -48,25 +49,19 @@ const splitLink = split(
   authLink.concat(httpLink)
 )
 
-
 const client = new ApolloClient({
   uri: 'http://localhost:8080/graphql',
   cache: new InMemoryCache()
   // link: splitLink
 })
 
-
-const WithApollo = () => {
-  return (
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  )
-}
-
 ReactDOM.render(
   <React.StrictMode>
-    <WithApollo />
+    <ApolloProvider client={client}>
+      <Router>
+        <App />
+      </Router>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
