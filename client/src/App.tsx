@@ -3,9 +3,11 @@ import './App.css'
 
 function App() {
   return (
-    <>
-      <Routes />
-    </>
+    <div className="App">
+      <header className="App-header">
+        <Routes />
+      </header>
+    </div>
   )
 }
 

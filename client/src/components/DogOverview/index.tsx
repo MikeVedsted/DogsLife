@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
+import { Link } from 'react-router-dom'
 
 import { ALL_DOGS } from '../../queries'
 import { ADD_DOG } from '../../mutations'
@@ -23,11 +24,12 @@ const DogOverview = () => {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <>
         {data &&
           data.allDogs.map((dog: { name: string; id: string }) => (
+            <Link key={dog.id} to={`/dog/${dog.id}`} >
             <p>{dog.name}</p>
+            </Link>
           ))}
         <h2>Add a dog</h2>
         <form onSubmit={handleSubmit}>
@@ -38,8 +40,7 @@ const DogOverview = () => {
           />
           <button>Submit</button>
         </form>
-      </header>
-    </div>
+      </>
   )
 }
 
