@@ -1,7 +1,8 @@
+import DateCell from './DateCell'
 import PaddingCell from './PaddingCell'
 
 const Cells = () => {
-  const now = new Date(2021,  0)
+  const now = new Date()
   const daysInCurrentMonth = new Date(
     now.getFullYear(),
     now.getMonth() + 1,
@@ -19,19 +20,19 @@ const Cells = () => {
   }
 
   for (let i = 1; i <= daysInCurrentMonth; i++) {
-    cells.push(<td style={{ border: '1px solid white' }}>{i}</td>)
+    cells.push(<DateCell value={i}  />)
   }
 
   for (let i = 0; i < cells.length; i = i + 7) {
     rows.push(
       <tr style={{ height: '100px' }}>
         {cells[i]}
-        {cells[i + 1] ? cells[i + 1] : <PaddingCell /> }
-        {cells[i + 2] ? cells[i + 2] : <PaddingCell /> }
-        {cells[i + 3] ? cells[i + 3] : <PaddingCell /> }
-        {cells[i + 4] ? cells[i + 4] : <PaddingCell /> }
-        {cells[i + 5] ? cells[i + 5] : <PaddingCell /> }
-        {cells[i + 6] ? cells[i + 6] : <PaddingCell /> }
+        {cells[i + 1] ? cells[i + 1] : <PaddingCell />}
+        {cells[i + 2] ? cells[i + 2] : <PaddingCell />}
+        {cells[i + 3] ? cells[i + 3] : <PaddingCell />}
+        {cells[i + 4] ? cells[i + 4] : <PaddingCell />}
+        {cells[i + 5] ? cells[i + 5] : <PaddingCell />}
+        {cells[i + 6] ? cells[i + 6] : <PaddingCell />}
       </tr>
     )
   }
