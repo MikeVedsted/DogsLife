@@ -15,7 +15,7 @@ const Calendar = () => {
       <table style={{ width: '700px' }}>
         <Header />
         <CalendarNavigation month={month} handleChange={handleChange} />
-        <Body />
+        <Body month={month} />
       </table>
     </div>
   )

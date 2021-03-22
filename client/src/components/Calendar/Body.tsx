@@ -1,8 +1,8 @@
 import DateCell from './DateCell'
 import PaddingCell from './PaddingCell'
 
-const Cells = () => {
-  const now = new Date()
+const Cells = ({ month }: { month: number }) => {
+  const now = new Date(new Date().getFullYear(), month)
   const daysInCurrentMonth = new Date(
     now.getFullYear(),
     now.getMonth() + 1,
