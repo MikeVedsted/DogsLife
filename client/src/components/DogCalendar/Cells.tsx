@@ -24,12 +24,36 @@ const Cells = () => {
     rows.push(
       <tr style={{ height: '100px' }}>
         {cells[i]}
-        {cells[i + 1]}
-        {cells[i + 2]}
-        {cells[i + 3]}
-        {cells[i + 4]}
-        {cells[i + 5]}
-        {cells[i + 6]}
+        {cells[i + 1] ? (
+          cells[i + 1]
+        ) : (
+          <td style={{ border: '1px solid white' }}>-</td>
+        )}
+        {cells[i + 2] ? (
+          cells[i + 2]
+        ) : (
+          <td style={{ border: '1px solid white' }}>-</td>
+        )}
+        {cells[i + 3] ? (
+          cells[i + 3]
+        ) : (
+          <td style={{ border: '1px solid white' }}>-</td>
+        )}
+        {cells[i + 4] ? (
+          cells[i + 4]
+        ) : (
+          <td style={{ border: '1px solid white' }}>-</td>
+        )}
+        {cells[i + 5] ? (
+          cells[i + 5]
+        ) : (
+          <td style={{ border: '1px solid white' }}>-</td>
+        )}
+        {cells[i + 6] ? (
+          cells[i + 6]
+        ) : (
+          <td style={{ border: '1px solid white' }}>-</td>
+        )}
       </tr>
     )
   }
