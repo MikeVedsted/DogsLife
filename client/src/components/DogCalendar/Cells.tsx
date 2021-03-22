@@ -10,6 +10,7 @@ const Cells = () => {
     firstDayInCurrentMonth === 0 ? 7 : firstDayInCurrentMonth
   
   let cells = []
+  let rows = []
 
   for (let i = 1; i < initialPadding; i++) {
     cells.push(<td style={{ border: '1px solid white' }}>-</td>)
@@ -19,7 +20,21 @@ const Cells = () => {
     cells.push(<td style={{ border: '1px solid white' }}>{i}</td>)
   }
 
-  return <tbody>{cells}</tbody>
+  for (let i = 0; i < cells.length; i = i + 7) {
+    rows.push(
+      <tr style={{ height: '100px' }}>
+        {cells[i]}
+        {cells[i + 1]}
+        {cells[i + 2]}
+        {cells[i + 3]}
+        {cells[i + 4]}
+        {cells[i + 5]}
+        {cells[i + 6]}
+      </tr>
+    )
+  }
+
+  return <tbody>{rows}</tbody>
 }
 
 export default Cells
