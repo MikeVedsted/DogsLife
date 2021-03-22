@@ -8,7 +8,7 @@ const Cells = () => {
   const firstDayInCurrentMonth = now.getDay()
   const initialPadding =
     firstDayInCurrentMonth === 0 ? 7 : firstDayInCurrentMonth
-  
+
   let cells = []
   let rows = []
 

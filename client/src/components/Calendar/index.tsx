@@ -1,7 +1,7 @@
 import Header from './Header'
 import Cells from './Cells'
 
-const DogCalendar = () => {
+const Calendar = () => {
   return (
     <div style={{ maxWidth: '100vw', maxHeight: '100vh' }}>
       <table style={{ width: '700px' }}>
@@ -12,4 +12,4 @@ const DogCalendar = () => {
   )
 }
 
-export default DogCalendar
+export default Calendar
