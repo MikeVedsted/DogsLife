@@ -5,6 +5,7 @@ const Cells = () => {
     now.getMonth() + 1,
     0
   ).getDate()
+  const firstDayInCurrentMonth = now.getDay()
 
   let cells = []
 
