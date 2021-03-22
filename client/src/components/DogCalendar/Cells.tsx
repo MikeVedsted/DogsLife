@@ -1,9 +1,11 @@
 const Cells = () => {
-  
-  const daysInMonth = (year: number, month: number) => {
-    return new Date(year, month, 0).getDate()
-  }
-  
+  const now = new Date()
+  const daysInCurrentMonth = new Date(
+    now.getFullYear(),
+    now.getMonth() + 1,
+    0
+  ).getDate()
+
   return <tbody></tbody>
 }
 
