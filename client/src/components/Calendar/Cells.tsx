@@ -1,5 +1,7 @@
+import PaddingCell from './PaddingCell'
+
 const Cells = () => {
-  const now = new Date()
+  const now = new Date(2021,  0)
   const daysInCurrentMonth = new Date(
     now.getFullYear(),
     now.getMonth() + 1,
@@ -13,7 +15,7 @@ const Cells = () => {
   let rows = []
 
   for (let i = 1; i < initialPadding; i++) {
-    cells.push(<td style={{ border: '1px solid white' }}>-</td>)
+    cells.push(<PaddingCell />)
   }
 
   for (let i = 1; i <= daysInCurrentMonth; i++) {
@@ -24,36 +26,12 @@ const Cells = () => {
     rows.push(
       <tr style={{ height: '100px' }}>
         {cells[i]}
-        {cells[i + 1] ? (
-          cells[i + 1]
-        ) : (
-          <td style={{ border: '1px solid white' }}>-</td>
-        )}
-        {cells[i + 2] ? (
-          cells[i + 2]
-        ) : (
-          <td style={{ border: '1px solid white' }}>-</td>
-        )}
-        {cells[i + 3] ? (
-          cells[i + 3]
-        ) : (
-          <td style={{ border: '1px solid white' }}>-</td>
-        )}
-        {cells[i + 4] ? (
-          cells[i + 4]
-        ) : (
-          <td style={{ border: '1px solid white' }}>-</td>
-        )}
-        {cells[i + 5] ? (
-          cells[i + 5]
-        ) : (
-          <td style={{ border: '1px solid white' }}>-</td>
-        )}
-        {cells[i + 6] ? (
-          cells[i + 6]
-        ) : (
-          <td style={{ border: '1px solid white' }}>-</td>
-        )}
+        {cells[i + 1] ? cells[i + 1] : <PaddingCell /> }
+        {cells[i + 2] ? cells[i + 2] : <PaddingCell /> }
+        {cells[i + 3] ? cells[i + 3] : <PaddingCell /> }
+        {cells[i + 4] ? cells[i + 4] : <PaddingCell /> }
+        {cells[i + 5] ? cells[i + 5] : <PaddingCell /> }
+        {cells[i + 6] ? cells[i + 6] : <PaddingCell /> }
       </tr>
     )
   }
