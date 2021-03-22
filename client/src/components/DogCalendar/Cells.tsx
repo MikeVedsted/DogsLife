@@ -6,7 +6,13 @@ const Cells = () => {
     0
   ).getDate()
 
-  return <tbody></tbody>
+  let cells = []
+
+  for (let i = 1; i <= daysInCurrentMonth; i++) {
+    cells.push(<td style={{ border: '1px solid white' }}>{i}</td>)
+  }
+
+  return <tbody>{cells}</tbody>
 }
 
 export default Cells
