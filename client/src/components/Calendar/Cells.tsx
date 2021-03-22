@@ -20,7 +20,7 @@ const Cells = () => {
   }
 
   for (let i = 1; i <= daysInCurrentMonth; i++) {
-    cells.push(<DateCell value={i}  />)
+    cells.push(<DateCell value={i} />)
   }
 
   for (let i = 0; i < cells.length; i = i + 7) {
