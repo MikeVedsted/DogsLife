@@ -8,7 +8,7 @@ const Calendar = () => {
   const [month, setMonth] = useState<number>(new Date().getMonth())
   const [showModal, setShowModal] = useState<boolean>(false)
 
-  const handleChange = (month: number) => {
+  const handleChange = (month: number): void => {
     setMonth(month)
   }
 
