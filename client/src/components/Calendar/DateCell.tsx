@@ -1,4 +1,6 @@
-const DateCell = ({ value, handleClick }: { value: number; handleClick: () => void }) => {
+import { CalendarDateCellProps } from '../../types/props'
+
+const DateCell = ({ value, handleClick }: CalendarDateCellProps) => {
   return (
     <td
       style={{
