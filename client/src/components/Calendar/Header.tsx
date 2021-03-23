@@ -1,12 +1,13 @@
 import CalendarNavigation from './CalendarNavigation'
+import { CalendarNavigationProps } from '../../types/props'
 
-const Header = ({ month, handleChange }: { month: number; handleChange: (month: number) => void }) => {
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+const Header = ({ month, handleChange }: CalendarNavigationProps) => {
+  const days: Array<string> = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
   return (
     <thead>
       <tr>
-        {days.map((day) => (
+        {days.map((day: string) => (
           <th style={{ width: '100px' }} key={day}>
             {day}
           </th>
