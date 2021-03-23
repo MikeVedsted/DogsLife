@@ -1,4 +1,6 @@
-const Modal = ({ handleClose, children }: { handleClose: () => void; children: any }) => {
+import { ModalProps } from '../../types'
+
+const Modal = ({ handleClose, children }: ModalProps) => {
   return (
     <div
       style={{

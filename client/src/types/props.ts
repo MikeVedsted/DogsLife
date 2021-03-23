@@ -12,3 +12,8 @@ export type CalendarDateCellProps = {
   value: number
   handleClick: () => void
 }
+
+export type ModalProps = {
+  handleClose: () => void
+  children: any
+}
