@@ -1,14 +1,15 @@
 import DateCell from './DateCell'
 import PaddingCell from './PaddingCell'
+import { CalendarBodyProps } from '../../types/props'
 
-const Cells = ({ month, handleClick }: { month: number; handleClick: () => void }) => {
-  const now = new Date(new Date().getFullYear(), month)
-  const daysInCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate()
-  const firstDayInCurrentMonth = now.getDay()
-  const initialPadding = firstDayInCurrentMonth === 0 ? 7 : firstDayInCurrentMonth
+const Body = ({ month, handleClick }: CalendarBodyProps) => {
+  const now: Date = new Date(new Date().getFullYear(), month)
+  const daysInCurrentMonth: number = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate()
+  const firstDayInCurrentMonth: number = now.getDay()
+  const initialPadding: number = firstDayInCurrentMonth === 0 ? 7 : firstDayInCurrentMonth
 
-  let cells = []
-  let rows = []
+  let cells: Array<JSX.Element> = []
+  let rows: Array<JSX.Element> = []
 
   for (let i = 1; i < initialPadding; i++) {
     cells.push(<PaddingCell />)
@@ -35,4 +36,4 @@ const Cells = ({ month, handleClick }: { month: number; handleClick: () => void 
   return <tbody>{rows}</tbody>
 }
 
-export default Cells
+export default Body
