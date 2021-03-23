@@ -1,16 +1,27 @@
+import { useMutation } from '@apollo/client'
+
+import { LOGIN } from '../../../gql/mutations'
 import useInput from '../../../hooks/useInput'
 
 const LoginForm = () => {
   const email = useInput('email')
   const password = useInput('password')
+  const [login] = useMutation(LOGIN)
 
-  const login = (e: React.SyntheticEvent) => {
+  const submitLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    console.log(email.value, password.value)
+    try {
+      await login({ variables: { 
+        email: email.value, 
+        password: password.value 
+      }})
+    } catch(e: unknown) {
+      console.log(e)
+    }
   }
 
   return (
-    <form onSubmit={login}>
+    <form onSubmit={submitLogin}>
       <label>
         Email
         <input {...email} />
