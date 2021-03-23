@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { useApolloClient } from '@apollo/client'
+
 import { ALL_DOGS } from '../../../gql/queries'
 import { AllDogsCache, Dog } from '../../../types'
 
