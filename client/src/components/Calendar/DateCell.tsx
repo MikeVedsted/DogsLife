@@ -1,4 +1,4 @@
-const DateCell = ({ value }: { value: number }) => {
+const DateCell = ({ value, handleClick }: { value: number; handleClick: () => void }) => {
   return (
     <td
       style={{
@@ -7,6 +7,7 @@ const DateCell = ({ value }: { value: number }) => {
         opacity: 0.3,
         fontWeight: 600
       }}
+      onClick={handleClick}
     >
       {value}
     </td>

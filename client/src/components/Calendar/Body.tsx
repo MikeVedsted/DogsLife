@@ -1,16 +1,11 @@
 import DateCell from './DateCell'
 import PaddingCell from './PaddingCell'
 
-const Cells = ({ month }: { month: number }) => {
+const Cells = ({ month, handleClick }: { month: number; handleClick: () => void }) => {
   const now = new Date(new Date().getFullYear(), month)
-  const daysInCurrentMonth = new Date(
-    now.getFullYear(),
-    now.getMonth() + 1,
-    0
-  ).getDate()
+  const daysInCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate()
   const firstDayInCurrentMonth = now.getDay()
-  const initialPadding =
-    firstDayInCurrentMonth === 0 ? 7 : firstDayInCurrentMonth
+  const initialPadding = firstDayInCurrentMonth === 0 ? 7 : firstDayInCurrentMonth
 
   let cells = []
   let rows = []
@@ -20,7 +15,7 @@ const Cells = ({ month }: { month: number }) => {
   }
 
   for (let i = 1; i <= daysInCurrentMonth; i++) {
-    cells.push(<DateCell value={i} />)
+    cells.push(<DateCell value={i} handleClick={handleClick} />)
   }
 
   for (let i = 0; i < cells.length; i = i + 7) {
