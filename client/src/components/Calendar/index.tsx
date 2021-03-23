@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 
 import Header from './Header'
-import Body from './Body'
-import CalendarNavigation from './CalendarNavigation'
 import Modal from '../Modal'
+import Body from './Body'
 
 const Calendar = () => {
   const [month, setMonth] = useState<number>(new Date().getMonth())
@@ -14,15 +13,14 @@ const Calendar = () => {
   }
 
   return (
-    <div style={{ maxWidth: '100vw', maxHeight: '100vh', overflow: "hidden" }}>
+    <div style={{ maxWidth: '100vw', maxHeight: '100vh', overflow: 'hidden' }}>
       {showModal && (
         <Modal handleClose={() => setShowModal(false)}>
           <p>MODAL CONTENT!</p>
         </Modal>
       )}
       <table style={{ width: '700px' }}>
-        <Header />
-        <CalendarNavigation month={month} handleChange={handleChange} />
+        <Header month={month} handleChange={handleChange}  />
         <Body month={month} handleClick={() => setShowModal(true)} />
       </table>
     </div>

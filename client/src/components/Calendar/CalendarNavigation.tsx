@@ -1,14 +1,6 @@
-const CalendarNavigation = ({
-  month,
-  handleChange
-}: {
-  month: number
-  handleChange: (month: number) => void
-}) => {
+const CalendarNavigation = ({ month, handleChange }: { month: number; handleChange: (month: number) => void }) => {
   const date = new Date(new Date().getFullYear(), month)
-  const displayMonth = new Intl.DateTimeFormat('en', { month: 'long' }).format(
-    date
-  )
+  const displayMonth = new Intl.DateTimeFormat('en', { month: 'long' }).format(date)
 
   return (
     <tr>
