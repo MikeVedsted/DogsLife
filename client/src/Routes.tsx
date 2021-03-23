@@ -1,8 +1,8 @@
 import { Switch, Route } from 'react-router-dom'
 
-import Dog from './components/Dog'
+import Dog from './components/Views/Dog'
 import Calendar from './components/Calendar'
-import DogOverview from './components/DogOverview'
+import DogOverview from './components/Views/DogOverview'
 
 const Routes = () => (
   <Switch>
