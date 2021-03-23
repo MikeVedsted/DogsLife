@@ -1,4 +1,4 @@
-import { CalendarDateCellProps } from '../../types/props'
+import { CalendarDateCellProps } from '../../types'
 
 const DateCell = ({ value, handleClick }: CalendarDateCellProps) => {
   return (

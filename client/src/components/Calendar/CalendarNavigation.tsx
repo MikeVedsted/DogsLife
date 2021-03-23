@@ -1,4 +1,4 @@
-import { CalendarNavigationProps } from '../../types/props'
+import { CalendarNavigationProps } from '../../types'
 
 const CalendarNavigation = ({ month, handleChange }: CalendarNavigationProps) => {
   const date: Date = new Date(new Date().getFullYear(), month)

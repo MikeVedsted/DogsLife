@@ -1,5 +1,5 @@
 import CalendarNavigation from './CalendarNavigation'
-import { CalendarNavigationProps } from '../../types/props'
+import { CalendarNavigationProps } from '../../types'
 
 const Header = ({ month, handleChange }: CalendarNavigationProps) => {
   const days: Array<string> = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

@@ -1,6 +1,6 @@
 import DateCell from './DateCell'
 import PaddingCell from './PaddingCell'
-import { CalendarBodyProps } from '../../types/props'
+import { CalendarBodyProps } from '../../types'
 
 const Body = ({ month, handleClick }: CalendarBodyProps) => {
   const now: Date = new Date(new Date().getFullYear(), month)
