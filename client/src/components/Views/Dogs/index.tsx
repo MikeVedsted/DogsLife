@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 
 import { ALL_DOGS } from '../../../gql/queries'
 import { ADD_DOG } from '../../../gql/mutations'
+import { Dog } from '../../../types'
 
-const DogOverview = () => {
+const Dogs = () => {
   const [name, setName] = useState<string>('')
   const { loading, data } = useQuery(ALL_DOGS)
 
@@ -13,7 +14,7 @@ const DogOverview = () => {
     refetchQueries: [{ query: ALL_DOGS }]
   })
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault()
     addDog({ variables: { name } })
     setName('')
@@ -26,7 +27,7 @@ const DogOverview = () => {
   return (
     <>
       {data &&
-        data.allDogs.map((dog: { name: string; id: string }) => (
+        data.allDogs.map((dog: Dog) => (
           <Link key={dog.id} to={`/dog/${dog.id}`}>
             <p>{dog.name}</p>
           </Link>
@@ -40,4 +41,4 @@ const DogOverview = () => {
   )
 }
 
-export default DogOverview
+export default Dogs

@@ -18,6 +18,7 @@ const DogView = () => {
       </>
     )
   }
+
   const currentDog: Dog = cachedData.allDogs.filter((dog: Dog) => dog.id === dogId)[0]
 
   return (

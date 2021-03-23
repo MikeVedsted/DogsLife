@@ -2,7 +2,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import Dog from './components/Views/Dog'
 import Calendar from './components/Calendar'
-import DogOverview from './components/Views/DogOverview'
+import DogOverview from './components/Views/Dogs'
 
 const Routes = () => (
   <Switch>
