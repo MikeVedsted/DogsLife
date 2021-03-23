@@ -1,6 +1,8 @@
-const CalendarNavigation = ({ month, handleChange }: { month: number; handleChange: (month: number) => void }) => {
-  const date = new Date(new Date().getFullYear(), month)
-  const displayMonth = new Intl.DateTimeFormat('en', { month: 'long' }).format(date)
+import { CalendarNavigationProps } from '../../types/props'
+
+const CalendarNavigation = ({ month, handleChange }: CalendarNavigationProps) => {
+  const date: Date = new Date(new Date().getFullYear(), month)
+  const displayMonth: string = new Intl.DateTimeFormat('en', { month: 'long' }).format(date)
 
   return (
     <tr>
