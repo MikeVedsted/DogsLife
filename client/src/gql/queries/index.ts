@@ -8,3 +8,12 @@ export const ALL_DOGS = gql`
     }
   }
 `
+
+export const CHECK_AUTH = gql`
+  query AuthCheck {
+    me {
+      id
+      name
+    }
+  }
+`
