@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, split } from '@apollo/client'
 // import { WebSocketLink } from '@apollo/client/link/ws'
 import { setContext } from '@apollo/client/link/context'
-import { getMainDefinition } from '@apollo/client/utilities'
+// import { getMainDefinition } from '@apollo/client/utilities'
 import AuthStorage from './util/AuthStorage'
 import AuthContext from './contexts/AuthContext'
 
@@ -33,14 +33,14 @@ const authLink = setContext((_, { headers }) => {
 //   }
 // })
 
-const splitLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query)
-    return definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
-  },
-  // wsLink,
-  authLink.concat(httpLink)
-)
+// const splitLink = split(
+//   ({ query }) => {
+//     const definition = getMainDefinition(query)
+//     return definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
+//   },
+//   // wsLink,
+//   authLink.concat(httpLink)
+// )
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
