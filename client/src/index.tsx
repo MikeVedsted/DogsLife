@@ -17,19 +17,21 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
+const httpLink = new HttpLink({
+  uri: '/graphql'
+})
+
 const authLink = setContext((_, { headers }) => {
   const token = AuthStorage.getAccessToken()
   return {
     headers: {
       ...headers,
-      authorization: token ? `bearer ${token}` : null
+      authorization: token ? `Bearer ${token}` : ''
     }
   }
 })
 
-const httpLink = new HttpLink({
-  uri: 'http://localhost:8080/graphql'
-})
+
 
 // const wsLink = new WebSocketLink({
 //   uri: `ws://localhost:8080/graphql`,
