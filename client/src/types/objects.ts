@@ -6,3 +6,7 @@ export type Dog = {
 export type AllDogsCache = {
   allDogs: Array<Dog>
 }
+
+export type AuthContextObject = {
+  token: string
+}

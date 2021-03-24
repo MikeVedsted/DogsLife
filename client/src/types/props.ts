@@ -17,3 +17,10 @@ export type ModalProps = {
   handleClose: () => void
   children: any
 }
+
+export type ProtectedRouteProps = {
+  component?: any
+  exact?: boolean
+  path: string
+  children?: any
+}
