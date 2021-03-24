@@ -1,12 +1,12 @@
 import useInput from '../../../hooks/useInput'
-import useLogin from '../../../hooks/useLogin'
+import { useLogin } from '../../../hooks/useLogin'
 import { useHistory } from 'react-router'
 
 const LoginForm = () => {
   const history = useHistory()
   const email = useInput('email')
   const password = useInput('password')
-  const [login] = useLogin()
+  const { login } = useLogin()
 
   const submitLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault()

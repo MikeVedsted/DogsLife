@@ -1,12 +1,11 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import AuthContext from '../../contexts/AuthContext'
+import Logout from './Logout'
 
 const Navigation = () => {
   const context = useContext(AuthContext)
   console.log(context)
-  console.log('bool', context.id && true)
-
   return (
     <nav
       style={{
@@ -28,8 +27,8 @@ const Navigation = () => {
       <Link style={{ textDecoration: 'none', color: 'inherit' }} to='/dogs'>
         My dogs
       </Link>
-      {context.id ? (
-        <p>logged in as {context.name}</p>
+      {context.token ? (
+        <Logout />
       ) : (
         <Link style={{ textDecoration: 'none', color: 'inherit' }} to='/login'>
           Login
