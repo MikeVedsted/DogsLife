@@ -11,13 +11,14 @@ import {
 // import { WebSocketLink } from '@apollo/client/link/ws'
 import { setContext } from '@apollo/client/link/context'
 import { getMainDefinition } from '@apollo/client/utilities'
+import AuthStorage from './util/AuthStorage'
 
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('dogslife-user')
+  const token = AuthStorage.getAccessToken()
   return {
     headers: {
       ...headers,
