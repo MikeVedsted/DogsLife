@@ -8,16 +8,18 @@ import Login from './components/Views/Login'
 import Calendar from './components/Calendar'
 
 import { CHECK_AUTH } from './gql/queries'
+import { useLogin } from './hooks/useLogin'
 import { ProtectedRouteProps } from './types'
-import AuthStorage from './util/AuthStorage'
+
 
 const ProtectedRoute = ({ component: Component, ...rest }: ProtectedRouteProps) => {
   const history = useHistory()
+  const { logout } = useLogin()
   const { loading, called, data } = useQuery(CHECK_AUTH, { fetchPolicy: 'network-only' })
   const isAuth: string | null = called && !loading && data && data.me ? data.me.id : null
 
   if (called && !loading && !data) {
-    AuthStorage.removeAccessToken()
+    logout()
     history.push('/login')
   }
 
