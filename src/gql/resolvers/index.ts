@@ -61,9 +61,7 @@ const resolvers = {
         throw new UserInputError('Please provide both password and email.')
       }
 
-      const user: UserDocument | null = await User.findOne({
-        email: args.email
-      })
+      const user: UserDocument | null = await User.findOne({ email })
 
       const passwordCheck =
         user === null
@@ -76,8 +74,7 @@ const resolvers = {
 
       const tokenValues = {
         name: user.name,
-        email: user.email,
-        id: user._id
+        id: user._id as string
       }
 
       return { value: jwt.sign(tokenValues, config.JWT_SECRET) }
