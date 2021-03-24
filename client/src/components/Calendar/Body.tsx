@@ -12,23 +12,23 @@ const Body = ({ month, handleClick }: CalendarBodyProps) => {
   let rows: Array<JSX.Element> = []
 
   for (let i = 1; i < initialPadding; i++) {
-    cells.push(<PaddingCell />)
+    cells.push(<PaddingCell key={`paddingCell-${i}`} />)
   }
 
   for (let i = 1; i <= daysInCurrentMonth; i++) {
-    cells.push(<DateCell value={i} handleClick={handleClick} />)
+    cells.push(<DateCell key={`${month}-dateCell-${i}`} value={i} handleClick={handleClick} />)
   }
 
   for (let i = 0; i < cells.length; i = i + 7) {
     rows.push(
-      <tr style={{ height: '100px' }}>
+      <tr key={`${month}-row-${i}`} style={{ height: '100px' }}>
         {cells[i]}
-        {cells[i + 1] ? cells[i + 1] : <PaddingCell />}
-        {cells[i + 2] ? cells[i + 2] : <PaddingCell />}
-        {cells[i + 3] ? cells[i + 3] : <PaddingCell />}
-        {cells[i + 4] ? cells[i + 4] : <PaddingCell />}
-        {cells[i + 5] ? cells[i + 5] : <PaddingCell />}
-        {cells[i + 6] ? cells[i + 6] : <PaddingCell />}
+        {cells[i + 1] ? cells[i + 1] : <PaddingCell key={`paddingCell-end-${i + 1}`} />}
+        {cells[i + 2] ? cells[i + 2] : <PaddingCell key={`paddingCell-end-${i + 2}`} />}
+        {cells[i + 3] ? cells[i + 3] : <PaddingCell key={`paddingCell-end-${i + 3}`} />}
+        {cells[i + 4] ? cells[i + 4] : <PaddingCell key={`paddingCell-end-${i + 4}`} />}
+        {cells[i + 5] ? cells[i + 5] : <PaddingCell key={`paddingCell-end-${i + 5}`} />}
+        {cells[i + 6] ? cells[i + 6] : <PaddingCell key={`paddingCell-end-${i + 6}`} />}
       </tr>
     )
   }
