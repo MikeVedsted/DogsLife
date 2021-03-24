@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 
 import Dog from './components/Views/Dog'
@@ -9,10 +9,17 @@ import Calendar from './components/Calendar'
 
 import { CHECK_AUTH } from './gql/queries'
 import { ProtectedRouteProps } from './types'
+import AuthStorage from './util/AuthStorage'
 
 const ProtectedRoute = ({ component: Component, ...rest }: ProtectedRouteProps) => {
+  const history = useHistory()
   const { loading, called, data } = useQuery(CHECK_AUTH, { fetchPolicy: 'network-only' })
-  let isAuth: string | null = called && !loading && data && data.me ? data.me.id : null
+  const isAuth: string | null = called && !loading && data && data.me ? data.me.id : null
+
+  if (called && !loading && !data) {
+    AuthStorage.removeAccessToken()
+    history.push('/login')
+  }
 
   if (loading) {
     return <p>Loading...</p>
