@@ -3,7 +3,7 @@ import { useMutation, useApolloClient } from '@apollo/client'
 import { LOGIN } from '../gql/mutations'
 import AuthStorage from '../util/AuthStorage'
 
-const useLogin = () => {
+export const useLogin = () => {
   const [mutate] = useMutation(LOGIN)
   const apolloClient = useApolloClient()
 
@@ -14,11 +14,10 @@ const useLogin = () => {
   }
 
   const logout = async () => {
-    await AuthStorage.removeAccessToken()
+    AuthStorage.removeAccessToken()
     apolloClient.resetStore()
   }
 
-  return [login, logout]
+  return {  login, logout  }
 }
 
-export default useLogin
