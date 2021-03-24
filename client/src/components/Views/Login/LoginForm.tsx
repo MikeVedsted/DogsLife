@@ -1,22 +1,20 @@
-import { useMutation } from '@apollo/client'
-
-import { LOGIN } from '../../../gql/mutations'
 import useInput from '../../../hooks/useInput'
+import useLogin from '../../../hooks/useLogin'
+import { useHistory } from 'react-router'
 
 const LoginForm = () => {
+  const history = useHistory()
   const email = useInput('email')
   const password = useInput('password')
-  const [login] = useMutation(LOGIN)
+  const [login] = useLogin()
 
   const submitLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     try {
-      await login({ variables: { 
-        email: email.value, 
-        password: password.value 
-      }})
-    } catch(e: unknown) {
-      console.log(e)
+      await login(email.value, password.value)
+      history.push('/')
+    } catch (error: unknown) {
+      console.log(error)
     }
   }
 
