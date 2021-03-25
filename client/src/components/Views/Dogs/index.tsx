@@ -16,9 +16,13 @@ const Dogs = () => {
     refetchQueries: [{ query: ALL_DOGS }]
   })
 
-  const handleSubmit = (event: React.SyntheticEvent) => {
+  const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault()
-    addDog({ variables: { name } })
+    try {
+      await addDog({ variables: { name: name.value, dob: dob.value } })
+    } catch ({ message }: unknown) {
+      console.log(message)
+    }
   }
 
   if (loading) {
