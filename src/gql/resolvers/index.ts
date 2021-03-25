@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { UserInputError } from 'apollo-server-errors'
+import { ApolloError, UserInputError } from 'apollo-server-errors'
 import { PubSub } from 'apollo-server-express'
 
 import config from '../../../util/config'
@@ -26,7 +26,23 @@ const resolvers = {
     },
     me: (_: any, __: any, context: { currentUser: UserDocument | null }) => {
       return context.currentUser
+    },
+    dogs: async (
+      _: any,
+      args: { id?: string },
+      context: { currentUser: UserDocument }
+    ): Promise<DogDocument | Array<DogDocument> | null> => {
+      if (args && args.id) {
+        return await Dog.findById(args.id)
+      }
+      const user = await User.findById(context.currentUser._id).populate('dogs')
+
+      if (!user) {
+        throw new ApolloError('Something went wrong.. Please try again.', '500')
+      }
+      return null
     }
+
   },
 
   Mutation: {
