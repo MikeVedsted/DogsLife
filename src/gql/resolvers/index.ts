@@ -66,6 +66,16 @@ const resolvers = {
       _root: unknown,
       args: { name: string; email: string; password: string }
     ): Promise<UserDocument> => {
+      const existingUser: UserDocument | null = await User.findOne({
+        email: args.email
+      })
+
+      if (existingUser) {
+        throw new UserInputError(
+          'A user with this email is already registered.'
+        )
+      }
+
       const saltRounds = 10
       const passwordHash = await bcrypt.hash(args.password, saltRounds)
 
@@ -74,6 +84,7 @@ const resolvers = {
         email: args.email,
         passwordHash
       })
+
       return await newUser.save()
     },
     login: async (
