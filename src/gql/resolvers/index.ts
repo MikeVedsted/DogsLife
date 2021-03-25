@@ -42,16 +42,25 @@ const resolvers = {
       }
       return null
     }
-
   },
 
   Mutation: {
     addDog: async (
       _root: unknown,
-      args: Pick<DogDocument, 'name'>
+      args: { name: string },
+      context: { currentUser: UserDocument }
     ): Promise<DogDocument> => {
-      const newDog = new Dog({ name: args.name })
-      return await newDog.save()
+      const user = await User.findById(context.currentUser.id)
+
+      if (!user) {
+        throw new ApolloError('Something went wrong.. Please try again.', '500')
+      }
+
+      const newDog: DogDocument = new Dog({ name: args.name })
+      const savedDog: DogDocument = await newDog.save()
+      user.dogs = user.dogs.concat(savedDog)
+      await user.save()
+      return savedDog
     },
     createUser: async (
       _root: unknown,
