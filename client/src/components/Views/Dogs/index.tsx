@@ -20,7 +20,7 @@ const Dogs = () => {
     event.preventDefault()
     try {
       await addDog({ variables: { name: name.value, dob: dob.value } })
-    } catch ({ message }: unknown) {
+    } catch ({ message }) {
       console.log(message)
     }
   }

@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const ADD_DOG = gql`
-  mutation AddDog($name: String!) {
-    addDog(name: $name) {
+  mutation AddDog($name: String!, $dob: Date!) {
+    addDog(name: $name, dob: $dob) {
       name
       id
     }
