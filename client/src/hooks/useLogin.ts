@@ -18,6 +18,5 @@ export const useLogin = () => {
     apolloClient.resetStore()
   }
 
-  return {  login, logout  }
+  return { login, logout }
 }
-
