@@ -18,15 +18,19 @@ const resolvers = {
     allDogs: () => {
       return Dog.find({})
     },
+
     dog: async (_: any, args: { id: string }) => {
       return await Dog.findById(args.id)
     },
+
     allUsers: () => {
       return User.find({})
     },
+
     me: (_: any, __: any, context: { currentUser: UserDocument | null }) => {
       return context.currentUser
     },
+
     dogs: async (
       _: any,
       args: { id?: string },
@@ -62,6 +66,7 @@ const resolvers = {
       await user.save()
       return savedDog
     },
+    
     createUser: async (
       _root: unknown,
       args: { name: string; email: string; password: string }
@@ -87,6 +92,7 @@ const resolvers = {
 
       return await newUser.save()
     },
+
     login: async (
       _root: unknown,
       args: { email: string; password: string; id: string }
