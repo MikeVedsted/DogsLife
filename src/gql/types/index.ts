@@ -14,7 +14,7 @@ const typeDefs = gql`
 
   type Dog {
     name: String!
-    dog: String!
+    dob: String!
     id: ID!
   }
 

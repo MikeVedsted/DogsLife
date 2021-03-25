@@ -51,22 +51,30 @@ const resolvers = {
   Mutation: {
     addDog: async (
       _root: unknown,
-      args: { name: string },
+      args: { name: string; dob: Date },
       context: { currentUser: UserDocument }
     ): Promise<DogDocument> => {
+      const { name, dob } = args
+
+      if (!name || !dob) {
+        throw new UserInputError(
+          'Name and birthday is required. Please provide both.'
+        )
+      }
+
       const user = await User.findById(context.currentUser.id)
 
       if (!user) {
         throw new ApolloError('Something went wrong.. Please try again.', '500')
       }
 
-      const newDog: DogDocument = new Dog({ name: args.name })
+      const newDog: DogDocument = new Dog({ name, dob })
       const savedDog: DogDocument = await newDog.save()
       user.dogs = user.dogs.concat(savedDog)
       await user.save()
       return savedDog
     },
-    
+
     createUser: async (
       _root: unknown,
       args: { name: string; email: string; password: string }
