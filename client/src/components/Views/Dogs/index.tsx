@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import { Link } from 'react-router-dom'
 
+import useInput from '../../../hooks/useInput'
 import { ALL_DOGS } from '../../../gql/queries'
 import { ADD_DOG } from '../../../gql/mutations'
 import { Dog } from '../../../types'
 
 const Dogs = () => {
-  const [name, setName] = useState<string>('')
+  const name = useInput('text')
+  const dob = useInput('date')
   const { loading, data } = useQuery(ALL_DOGS)
 
   const [addDog] = useMutation(ADD_DOG, {
@@ -17,7 +19,6 @@ const Dogs = () => {
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault()
     addDog({ variables: { name } })
-    setName('')
   }
 
   if (loading) {
@@ -34,7 +35,8 @@ const Dogs = () => {
         ))}
       <h2>Add a dog</h2>
       <form onSubmit={handleSubmit}>
-        <input placeholder='Add a dog' onChange={({ target }) => setName(target.value)} value={name} />
+        <input placeholder='Add a dog' {...name} />
+        <input {...dob} />
         <button>Submit</button>
       </form>
     </>
