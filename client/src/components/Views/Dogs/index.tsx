@@ -3,17 +3,17 @@ import { useQuery, useMutation } from '@apollo/client'
 import { Link } from 'react-router-dom'
 
 import useInput from '../../../hooks/useInput'
-import { ALL_DOGS } from '../../../gql/queries'
+import { MY_DOGS } from '../../../gql/queries'
 import { ADD_DOG } from '../../../gql/mutations'
 import { Dog } from '../../../types'
 
 const Dogs = () => {
   const name = useInput('text')
   const dob = useInput('date')
-  const { loading, data } = useQuery(ALL_DOGS)
+  const { loading, data } = useQuery(MY_DOGS)
 
   const [addDog] = useMutation(ADD_DOG, {
-    refetchQueries: [{ query: ALL_DOGS }]
+    refetchQueries: [{ query: MY_DOGS }]
   })
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
@@ -32,7 +32,7 @@ const Dogs = () => {
   return (
     <>
       {data &&
-        data.allDogs.map((dog: Dog) => (
+        data.dogs.map((dog: Dog) => (
           <Link key={dog.id} to={`/dog/${dog.id}`}>
             <p>{dog.name}</p>
           </Link>
