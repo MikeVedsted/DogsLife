@@ -1,6 +1,8 @@
 import { gql } from 'apollo-server-express'
 
 const typeDefs = gql`
+  scalar Date
+
   type User {
     name: String!
     email: String!
@@ -14,7 +16,7 @@ const typeDefs = gql`
 
   type Dog {
     name: String!
-    dob: String!
+    dob: Date!
     id: ID!
   }
 
@@ -23,11 +25,11 @@ const typeDefs = gql`
     dog(id: ID!): Dog
     allUsers: [User]
     me: User
-    dogs(id: ID): Dog
+    dogs(id: ID): [Dog]
   }
 
   type Mutation {
-    addDog(name: String!, dob: String!): Dog
+    addDog(name: String!, dob: Date!): Dog
     createUser(name: String!, email: String!, password: String!): User
     login(email: String!, password: String!): Token
   }
