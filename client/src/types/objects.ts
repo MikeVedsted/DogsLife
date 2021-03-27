@@ -1,10 +1,11 @@
 export type Dog = {
   id: string
   name: string
+  dob: string
 }
 
-export type AllDogsCache = {
-  allDogs: Array<Dog>
+export type MyDogsCache = {
+  dogs: Array<Dog>
 }
 
 export type AuthContextObject = {
